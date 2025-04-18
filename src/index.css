@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  ::selection {
+    @apply bg-[#FF4D4D] text-white;
+  }
+}
+
+@layer components {
+  .animate-on-scroll {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .scale-in {
+    animation: scaleIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .delay-1 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-2 {
+    animation-delay: 0.6s;
+  }
+
+  .delay-3 {
+    animation-delay: 0.9s;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF4D4D] via-[#FF8F8F] to-[#FF4D4D];
+    background-size: 200% auto;
+    animation: gradient 4s linear infinite;
+  }
+  
+  .hover-underline {
+    @apply relative;
+  }
+  
+  .hover-underline::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300;
+  }
+  
+  .hover-underline:hover::after {
+    @apply w-full;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-white/80 to-white/40;
+  }
+}
